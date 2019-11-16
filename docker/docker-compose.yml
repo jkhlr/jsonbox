@@ -3,20 +3,21 @@ services:
   mongo:
     container_name: mongo
     image: mongo
+    restart: unless-stopped
     volumes:
       - ./data:/data/db
     ports:
-      - "27017:27017"
+      - "127.0.0.1:27017:27017"
   jsonbox:
     container_name: jsonbox
-    restart: always
+    restart: unless-stopped
     environment:
       - MONGODB_URI=mongodb://mongo:27017/jsonbox-io-dev
     build: 
       context: ../
       dockerfile: docker/Dockerfile
     ports:
-      - "3000:3000"
+      - "127.0.0.1:8004:3000"
     links:
       - mongo
     depends_on:
