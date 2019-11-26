@@ -14,3 +14,4 @@ npm-debug.log
 admin.js
 
 .idea/
+docker/data/
